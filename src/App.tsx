@@ -1,12 +1,10 @@
 import "./App.css";
-import TodoList from "./components/TodoList/TodoList";
-import NewTodoItem from "./components/NewTodoItem/NewTodoItem";
+import AllTodosView from "./components/AllTodosView/AllTodosView";
 
 function App() {
   return (
     <div className="App">
-      <NewTodoItem />
-      <TodoList />
+      <AllTodosView />
     </div>
   );
 }

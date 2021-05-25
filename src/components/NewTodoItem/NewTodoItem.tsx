@@ -1,47 +1,56 @@
+import "./NewTodoItem.css";
 import React from "react";
 import { connect } from "react-redux";
 import { useState } from "react";
 import { createTodo } from "../../redux/actions";
-import { ITodo, RState, DispatchType } from "../../redux/types.d";
+import { ITodo, CreateTodoDispatchType, TotalState } from "../../redux/types.d";
+import { Todo } from '../../common/Todo';
+import ArrowForward from '@material-ui/icons/ArrowForward';
 
 type Props = {
-  todos: ITodo[];
+  openTodos: ITodo[];
   onCreatePressed: Function;
 };
 const NewTodoItem = (props: Props) => {
   const [inputValue, setInputValue] = useState("");
-  const todos = props.todos || [];
   return (
     <div className="new-todo-form">
-      <input
-        type="text"
-        placeholder="Type new todo"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button
+      <div className="new-todo-item">
+        <input
+          type="text"
+          placeholder="New Todo"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button
         onClick={() => {
-          const isDuplicateTodo = todos.some(
-            (todo) => todo.text === inputValue
-          );
-          if (!isDuplicateTodo) {
-            props.onCreatePressed(inputValue);
-            setInputValue("");
-          }
-        }}
-      >
-        Create todo
+          props.onCreatePressed(inputValue);
+          setInputValue("");
+        }}>
+        <ArrowForward/>
       </button>
+      </div>
+      
     </div>
   );
 };
 
-const mapStateToProps = (state: RState) => ({
-  todos: state.todos.todos,
-});
+const mapStateToProps = (state: TotalState) => {
+  let { todos } = state.todosData;
+  var openTodos:ITodo[] = todos.filter(todo => todo.isComplete);
+  return {
+    openTodos
+  }
+};
 
-const mapDispatchToProps = (dispatch: DispatchType) => ({
-  onCreatePressed: (text: String) => dispatch(createTodo(text)),
+const mapDispatchToProps = (dispatch: CreateTodoDispatchType) => ({
+  onCreatePressed: (text: string) => {
+    if (!text)
+      return;
+    
+    var newTodo = new Todo(text);
+    dispatch(createTodo(newTodo))
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTodoItem);
