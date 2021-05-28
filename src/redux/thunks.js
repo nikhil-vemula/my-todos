@@ -19,7 +19,7 @@ const loadTodos =  () => async (dispatch, getState) => {
         dispatch(todosFetched(todos));
     }).catch((error)=> {
         console.error(error);
-        dispatch(showToast("Error fetching todo", "error"));
+        dispatch(showToast("Error fetching todos", "error"));
     });
 };
 

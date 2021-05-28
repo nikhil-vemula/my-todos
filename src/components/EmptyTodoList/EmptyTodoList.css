@@ -1,0 +1,12 @@
+.empty-todo-list {
+  height: 500px;
+  margin-top: 1em;
+  display: grid;
+  place-items: center;
+  color: #bababa;
+}
+
+.empty-todo-list > div > div {
+  display: grid;
+  place-items: center;
+}
