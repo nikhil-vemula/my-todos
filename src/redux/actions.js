@@ -38,3 +38,14 @@ export const hideToast = (msg, type) => ({
   type: HIDE_TOAST,
   payload: { msg, type },
 });
+
+export const UPDATE_USER_STATE = "USER_LOGIN_STATE";
+export const updateUserState = (userId) => ({
+  type: UPDATE_USER_STATE,
+  payload: { userId },
+});
+
+export const USER_STATE_FETCHED = "USER_STATE_FETCHED";
+export const userStateFetched = () => ({
+  type: USER_STATE_FETCHED,
+});

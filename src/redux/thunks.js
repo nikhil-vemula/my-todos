@@ -1,11 +1,12 @@
 import {  fetchingTodos, todosFetched, todoCreated, todoRemoved, todoMarked, showToast} from './actions'
 import { db } from '../common/firebase'; 
 import { Todo } from '../common/Todo';
-import { TODOS_DB_PATH } from '../common/constants';
+import { getUserTodosPath } from '../common/util';
 
 const loadTodos =  () => async (dispatch, getState) => {
     dispatch(fetchingTodos());
-    db.collection(TODOS_DB_PATH).get().then((snapshot) => {
+    console.log(getUserTodosPath(getState()));
+    db.collection(getUserTodosPath(getState())).get().then((snapshot) => {
         let todos = [];
         snapshot.forEach((doc) => {
             let id = doc.id;
@@ -24,7 +25,7 @@ const loadTodos =  () => async (dispatch, getState) => {
 };
 
 const createTodo =  (text) => async (dispatch, getState) => {
-    db.collection(TODOS_DB_PATH).add({
+    db.collection(getUserTodosPath(getState())).add({
         text: text,
         isComplete: false
     }).then((docRef) => {
@@ -39,7 +40,7 @@ const createTodo =  (text) => async (dispatch, getState) => {
 };
 
 const removeTodo =  (id) => async (dispatch, getState) => {
-    db.collection(TODOS_DB_PATH).doc(id).delete().then(() => {
+    db.collection(getUserTodosPath(getState())).doc(id).delete().then(() => {
         dispatch(todoRemoved(id));
     }).catch((error) => {
         console.error("Error removing todo: ", error);
@@ -48,7 +49,7 @@ const removeTodo =  (id) => async (dispatch, getState) => {
 };
 
 const markTodo =  (id, isComplete) => async (dispatch, getState) => {
-    db.collection(TODOS_DB_PATH).doc(id)
+    db.collection(getUserTodosPath(getState())).doc(id)
     .set({isComplete}, {merge: true})
     .then(() => {
         dispatch(todoMarked(id, isComplete));

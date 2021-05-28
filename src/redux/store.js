@@ -1,11 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { todosData, uiData } from "./reducers";
+import { todosData, uiData, userData } from "./reducers";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducers = {
   todosData,
-  uiData
+  uiData,
+  userData
 };
 
 const rootReducer = combineReducers(reducers);
