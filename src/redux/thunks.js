@@ -5,7 +5,6 @@ import { getUserTodosPath } from '../common/util';
 
 const loadTodos =  () => async (dispatch, getState) => {
     dispatch(fetchingTodos());
-    console.log(getUserTodosPath(getState()));
     db.collection(getUserTodosPath(getState())).get().then((snapshot) => {
         let todos = [];
         snapshot.forEach((doc) => {

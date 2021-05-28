@@ -21,7 +21,7 @@ export const userListener = (dispatch) => {
     if (user) {
       dispatch(updateUserState(user.uid));
     } else {
-      dispatch(updateUserState(""));
+      dispatch(updateUserState("NOT_LOGGED_IN"));
     }
     dispatch(userStateFetched());
   });

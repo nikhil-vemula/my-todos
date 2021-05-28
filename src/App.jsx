@@ -7,19 +7,14 @@ import LoginScreen from "./components/LoginScreen/LoginScreen";
 function App(props) {
   return (
     <div className="App">
-      {!props.isLoading ? (
-        !props.userId ? (
-          <LoginScreen />
-        ) : (
-          <div>
-            <ToastMessage />
-            <AllTodosView />
-          </div>
-        )
+      {props.userId && props.userId !== "NOT_LOGGED_IN" ? (
+        <div>
+          <ToastMessage />
+          <AllTodosView />
+        </div>
       ) : (
-        ""
+        <LoginScreen />
       )}
-      {}
     </div>
   );
 }
