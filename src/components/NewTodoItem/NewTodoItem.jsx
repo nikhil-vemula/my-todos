@@ -3,7 +3,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { useState } from "react";
 import { createTodo } from "../../redux/thunks";
-import { Todo } from '../../common/Todo';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 
 const NewTodoItem = (props) => {

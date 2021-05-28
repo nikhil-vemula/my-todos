@@ -13,7 +13,6 @@ const loadTodos =  () => async (dispatch, getState) => {
             let todo = new Todo();
             todo.id = id;
             todo.text = text;
-            console.log(id, todo);
             todos.push(todo);
         });
         dispatch(todosFetched(todos));
@@ -26,7 +25,6 @@ const createTodo =  (text) => async (dispatch, getState) => {
         isComplete: false
     }).then((docRef) => {
         let newTodo = new Todo();
-        console.log(docRef);
         newTodo.text = text;
         newTodo.id = docRef.id;
         dispatch(todoCreated(newTodo));
