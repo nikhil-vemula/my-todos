@@ -2,7 +2,7 @@ import "./NewTodoItem.css";
 import React from "react";
 import { connect } from "react-redux";
 import { useState } from "react";
-import { createTodo } from "../../redux/actions";
+import { createTodo } from "../../redux/thunks";
 import { Todo } from '../../common/Todo';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 
@@ -42,9 +42,7 @@ const mapDispatchToProps = (dispatch) => ({
   onCreatePressed: (text) => {
     if (!text)
       return;
-    
-    var newTodo = new Todo(text);
-    dispatch(createTodo(newTodo))
+    dispatch(createTodo(text))
   },
 });
 

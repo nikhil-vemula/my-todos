@@ -1,6 +1,4 @@
-import { CREATE_TODO, MARK_TODO, REMOVE_TODO } from './actions'
-import { Todo } from '../common/Todo';
-
+import { TODOS_FETCHED, TODO_CREATED, TODO_MARKED, TODO_REMOVED, FETCHING_TODOS } from './actions'
 const initialState = {
     todos: []
 }
@@ -8,18 +6,15 @@ const initialState = {
 export const todosData = (state = initialState, action) => {
     const { type, payload } = action;
     
-    if (type === CREATE_TODO) {
-        const { text } = payload;
+    if (type === TODO_CREATED) {
+        const { newTodo } = payload;
         let todos = [...state.todos];
-        const newTodo = new Todo(text);
-        console.log(newTodo);
         todos = todos.concat(newTodo);
-        console.log(todos);
         return {
             ...state,
             todos
         };
-    } else if (type === REMOVE_TODO) {
+    } else if (type === TODO_REMOVED) {
         const { id } = payload;
         let todos = [...state.todos];
         todos = todos.filter((todo) => todo.id !== id)
@@ -27,7 +22,7 @@ export const todosData = (state = initialState, action) => {
             ...state,
             todos
         };
-    } else if (type === MARK_TODO) {
+    } else if (type === TODO_MARKED) {
         const { id, isComplete } = payload;
         let todos = [...state.todos];
         for (let i=0; i < todos.length; i++) {
@@ -38,6 +33,15 @@ export const todosData = (state = initialState, action) => {
             ...state,
             todos
         };
+    } else if (type === FETCHING_TODOS) {
+        console.log("Fetching todos..");
+    } else if (type === TODOS_FETCHED) {
+        const { todos } = payload;
+        console.log("Todos fetched...");
+        return {
+            ...state,
+            todos
+        }
     }
 
     return state;

@@ -2,7 +2,7 @@ import "./TodoList.css";
 import React from "react";
 import TodoListItem from "../TodoListItem/TodoListItem";
 import { connect } from "react-redux";
-import { markTodo, removeTodo } from "../../redux/actions";
+import { markTodo, removeTodo } from "../../redux/thunks";
 
 const TodoList = (props) => {
   const todos = props.todos || [];

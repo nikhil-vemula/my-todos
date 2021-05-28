@@ -1,10 +1,12 @@
-import { v4 as uuidv4 } from 'uuid';
-
 class Todo {
-    constructor(text) {
-        this.id = uuidv4();
-        this.text = text;
+    constructor() {
+        this.id = "";
+        this.text = "";
         this.isComplete = false;
+    }
+
+    markComplete() {
+        this.isComplete = true;
     }
 }
 

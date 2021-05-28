@@ -1,0 +1,1 @@
+export const TODOS_DB_PATH = "todos";

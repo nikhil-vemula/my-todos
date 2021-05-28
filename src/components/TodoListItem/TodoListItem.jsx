@@ -5,7 +5,7 @@ import Close from '@material-ui/icons/Close';
 
 const TodoList = (props) => {
   return (
-    <div className="todo-list-item card">
+    <div className="todo-list-item card" id={props.todo.id}>
       <RoundCheckbox id={props.todo.id} isChecked={props.todo.isComplete} onCompletePressed={props.onCompletePressed}/>
       <span className={!props.todo.isComplete ? 'open-todo' : 'closed-todo'}>{props.todo.text}</span>
       <button

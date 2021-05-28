@@ -1,18 +1,28 @@
-export const CREATE_TODO = 'CREATE_TODO';
-export const createTodo = (todo) => ({
-  type: CREATE_TODO,
-  payload: todo,
+export const TODO_CREATED = "TODO_CREATED";
+export const todoCreated = (newTodo) => ({
+  type: TODO_CREATED,
+  payload: { newTodo },
 });
 
-
-export const REMOVE_TODO = 'REMOVE_TODO';
-export const removeTodo = (id) => ({
-    type: REMOVE_TODO,
-    payload: { id },
+export const TODO_REMOVED = "TODO_REMOVED";
+export const todoRemoved = (id) => ({
+  type: TODO_REMOVED,
+  payload: { id },
 });
 
-export const MARK_TODO = 'MARK_TODO';
-export const markTodo = (id, isComplete) => ({
-    type: MARK_TODO,
-    payload: { id, isComplete},
+export const TODO_MARKED = "TODO_MARKED";
+export const todoMarked = (id, isComplete) => ({
+  type: TODO_MARKED,
+  payload: { id, isComplete },
+});
+
+export const FETCHING_TODOS = "FETCHING_TODOS";
+export const fetchingTodos = () => ({
+  type: FETCHING_TODOS,
+});
+
+export const TODOS_FETCHED = "TODOS_FETCHED";
+export const todosFetched = (todos) => ({
+  type: TODOS_FETCHED,
+  payload: { todos },
 });
