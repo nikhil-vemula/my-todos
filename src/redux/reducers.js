@@ -1,4 +1,5 @@
 import {
+  FETCHING_TODOS,
   HIDE_TOAST,
   SHOW_TOAST,
   TODOS_FETCHED,
@@ -56,7 +57,8 @@ export const todosData = (state = initialTodoState, action) => {
 const initialUIData = {
   showToast: false,
   toastMsg: "",
-  isLoading: true
+  isLoading: true,
+  isTodosLoading: false
 };
 
 export const uiData = (state = initialUIData, action) => {
@@ -79,7 +81,19 @@ export const uiData = (state = initialUIData, action) => {
       ...state,
       isLoading: false
     }
+  } else if (type === FETCHING_TODOS) {
+    return {
+      ...state,
+      isTodosLoading: true,
+    };
+  } 
+  else if (type === TODOS_FETCHED) {
+    return {
+      ...state,
+      isTodosLoading: false,
+    };
   }
+
   return state;
 };
 
