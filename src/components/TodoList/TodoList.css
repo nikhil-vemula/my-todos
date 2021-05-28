@@ -1,0 +1,9 @@
+
+.list-wrapper {
+    width: 80%;
+    margin: auto;
+    margin-top: 1em;
+}
+.list-wrapper .list-label {
+    font-style: italic;
+}

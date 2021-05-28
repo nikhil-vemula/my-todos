@@ -1,0 +1,46 @@
+.new-todo-item {
+  position: relative;
+  margin: auto;
+  width: 50%;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  padding-right: 0.5em;
+}
+
+.new-todo-item input {
+  padding: 1em;
+  border: 0px;
+  font-size: 1em;
+  margin: 0.2em;
+  flex-grow: 1;
+}
+
+.new-todo-item svg {
+  margin: auto;
+  color: #bababa;
+}
+
+.new-todo-item input:focus-visible {
+  outline: 0;
+}
+
+.new-todo-item input::placeholder {
+  color: #bababa;
+  opacity: 1;
+}
+
+.new-todo-item button {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .new-todo-item {
+    width: 80%;
+  }
+}

@@ -1,0 +1,37 @@
+.todo-list-item {
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+}
+
+.card {
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  transition: 0.6s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.todo-list-item .open-todo {
+  color: #000;
+}
+
+.todo-list-item .closed-todo {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.todo-list-item span {
+  flex-grow: 1;
+}
+
+.todo-list-item  button {
+  color: #bababa;
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
