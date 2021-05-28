@@ -1,9 +1,10 @@
 import { TODOS_FETCHED, TODO_CREATED, TODO_MARKED, TODO_REMOVED, FETCHING_TODOS } from './actions'
-const initialState = {
+
+const initialTodoState = {
     todos: []
 }
 
-export const todosData = (state = initialState, action) => {
+export const todosData = (state = initialTodoState, action) => {
     const { type, payload } = action;
     
     if (type === TODO_CREATED) {
@@ -34,10 +35,8 @@ export const todosData = (state = initialState, action) => {
             todos
         };
     } else if (type === FETCHING_TODOS) {
-        console.log("Fetching todos..");
     } else if (type === TODOS_FETCHED) {
         const { todos } = payload;
-        console.log("Todos fetched...");
         return {
             ...state,
             todos

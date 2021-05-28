@@ -7,10 +7,11 @@ import { loadTodos } from '../../redux/thunks';
 
 const AllTodosView = (props) => {
   const { todos } = props;
+  const { loadAllTodos } = props;
 
   useEffect(() => {
-    props.loadAllTodos();
-  }, []);
+    loadAllTodos();
+  }, [loadAllTodos]);
 
   return (
     <div id="all-todos-view-container">
@@ -22,9 +23,8 @@ const AllTodosView = (props) => {
 
 const mapStateToProps = (state) => {
   let { todos = []} = state.todosData;
-  // var openTodos: ITodo[] = todos.filter(todo => !todo.isComplete);
   return {
-    todos
+    todos,
   }
 };
 
