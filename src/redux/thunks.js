@@ -9,10 +9,11 @@ const loadTodos =  () => async (dispatch, getState) => {
         let todos = [];
         snapshot.forEach((doc) => {
             let id = doc.id;
-            let { text } = doc.data();
+            let { text, isComplete } = doc.data();
             let todo = new Todo();
             todo.id = id;
             todo.text = text;
+            todo.isComplete = isComplete;
             todos.push(todo);
         });
         dispatch(todosFetched(todos));
