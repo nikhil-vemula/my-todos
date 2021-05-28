@@ -41,6 +41,6 @@
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .new-todo-item {
-    width: 80%;
+    width: 90%;
   }
 }
