@@ -25,7 +25,7 @@ const AllTodosView = (props) => {
           <EmptyTodoList />
         )
       ) : (
-        <div class="todos-loading">
+        <div className="todos-loading">
           <LinearProgress />
         </div>
       )}
