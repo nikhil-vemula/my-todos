@@ -9,11 +9,9 @@ const loadTodos =  () => async (dispatch, getState) => {
         let todos = [];
         snapshot.forEach((doc) => {
             let id = doc.id;
-            let { text, isComplete } = doc.data();
+            let { text, isComplete, created } = doc.data();
             let todo = new Todo();
-            todo.id = id;
-            todo.text = text;
-            todo.isComplete = isComplete;
+            todo.setValues(id, text, isComplete, created.toDate());
             todos.push(todo);
         });
         dispatch(todosFetched(todos));
@@ -24,10 +22,9 @@ const loadTodos =  () => async (dispatch, getState) => {
 };
 
 const createTodo =  (text) => async (dispatch, getState) => {
-    db.collection(getUserTodosPath(getState())).add({
-        text: text,
-        isComplete: false
-    }).then((docRef) => {
+    let newTodo = new Todo();
+    newTodo.text = text;
+    db.collection(getUserTodosPath(getState())).add(newTodo.toJSON()).then((docRef) => {
         let newTodo = new Todo();
         newTodo.text = text;
         newTodo.id = docRef.id;

@@ -12,7 +12,7 @@ const TodoList = (props) => {
         onClick={() => {
           props.onRemovePressed(props.todo.id);
         }}>
-        {props.todo.isComplete ? <Close /> : ''}
+        {props.todo.isComplete ? <a href='void(0)' ><Close /></a>: ''}
       </button>
     </div>
     
