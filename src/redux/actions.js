@@ -26,3 +26,15 @@ export const todosFetched = (todos) => ({
   type: TODOS_FETCHED,
   payload: { todos },
 });
+
+export const SHOW_TOAST = "SHOW_TOAST";
+export const showToast = (msg, type) => ({
+  type: SHOW_TOAST,
+  payload: { msg, type },
+});
+
+export const HIDE_TOAST = "HIDE_TOAST";
+export const hideToast = (msg, type) => ({
+  type: HIDE_TOAST,
+  payload: { msg, type },
+});

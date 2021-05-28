@@ -1,4 +1,4 @@
-import { TODOS_FETCHED, TODO_CREATED, TODO_MARKED, TODO_REMOVED, FETCHING_TODOS } from './actions'
+import { HIDE_TOAST, SHOW_TOAST, TODOS_FETCHED, TODO_CREATED, TODO_MARKED, TODO_REMOVED } from './actions'
 
 const initialTodoState = {
     todos: []
@@ -34,7 +34,6 @@ export const todosData = (state = initialTodoState, action) => {
             ...state,
             todos
         };
-    } else if (type === FETCHING_TODOS) {
     } else if (type === TODOS_FETCHED) {
         const { todos } = payload;
         return {
@@ -43,5 +42,29 @@ export const todosData = (state = initialTodoState, action) => {
         }
     }
 
+    return state;
+}
+
+const initialUIData = {
+    showToast: false,
+    toastMsg: ""
+};
+
+export const uiData = (state = initialUIData, action) => {
+    const { type, payload } = action;
+    if (type === SHOW_TOAST) {
+        const { msg } = payload;
+        return {
+            ...state,
+            showToast: true,
+            toastMsg: msg
+        }
+    } else if (type === HIDE_TOAST) {
+        return {
+            ...state,
+            showToast: false,
+            toastMsg: ""
+        }
+    }
     return state;
 }

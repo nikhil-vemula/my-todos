@@ -1,4 +1,4 @@
-import {  fetchingTodos, todosFetched, todoCreated, todoRemoved, todoMarked} from './actions'
+import {  fetchingTodos, todosFetched, todoCreated, todoRemoved, todoMarked, showToast} from './actions'
 import { db } from '../common/firebase'; 
 import { Todo } from '../common/Todo';
 import { TODOS_DB_PATH } from '../common/constants';
@@ -17,6 +17,9 @@ const loadTodos =  () => async (dispatch, getState) => {
             todos.push(todo);
         });
         dispatch(todosFetched(todos));
+    }).catch((error)=> {
+        console.error(error);
+        dispatch(showToast("Error fetching todo", "error"));
     });
 };
 
@@ -30,7 +33,8 @@ const createTodo =  (text) => async (dispatch, getState) => {
         newTodo.id = docRef.id;
         dispatch(todoCreated(newTodo));
     }).catch((error) => {
-        console.error("Error adding document: ", error);
+        console.error("Error adding todo: ", error);
+        dispatch(showToast("Error creating todo", "error"));
     });
 };
 
@@ -38,7 +42,8 @@ const removeTodo =  (id) => async (dispatch, getState) => {
     db.collection(TODOS_DB_PATH).doc(id).delete().then(() => {
         dispatch(todoRemoved(id));
     }).catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error("Error removing todo: ", error);
+        dispatch(showToast("Error deleting todo", "error"));
     });
 };
 
@@ -47,6 +52,9 @@ const markTodo =  (id, isComplete) => async (dispatch, getState) => {
     .set({isComplete}, {merge: true})
     .then(() => {
         dispatch(todoMarked(id, isComplete));
+    }).catch((error) => {
+        console.error("Error marking the todo: ", error);
+        dispatch(showToast("Error completing todo", "error"));
     });
  };
 
