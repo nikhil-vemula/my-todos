@@ -16,7 +16,7 @@
   transition: 0.6s;
 }
 
-.card:hover {
+.card:focus-visible {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -29,8 +29,19 @@
   text-decoration: line-through;
 }
 
-.todo-list-item span {
+.todo-list-item div.todo-text {
   flex-grow: 1;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.todo-list-item div.todo-text[contenteditable=true] {
+  border-bottom: 2px solid darkgray;
+}
+
+.todo-list-item div.todo-text:focus-visible {
+  outline: 0;
 }
 
 .todo-list-item button {

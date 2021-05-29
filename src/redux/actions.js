@@ -10,10 +10,10 @@ export const todoRemoved = (id) => ({
   payload: { id },
 });
 
-export const TODO_MARKED = "TODO_MARKED";
-export const todoMarked = (id, isComplete) => ({
-  type: TODO_MARKED,
-  payload: { id, isComplete },
+export const TODO_UPDATED = "TODO_UPDATED";
+export const todoUpdated = (updateObject) => ({
+  type: TODO_UPDATED,
+  payload: { updateObject },
 });
 
 export const FETCHING_TODOS = "FETCHING_TODOS";
