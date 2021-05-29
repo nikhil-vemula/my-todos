@@ -11,7 +11,8 @@ const loadTodos =  () => async (dispatch, getState) => {
             let id = doc.id;
             let { text, isComplete, created, priority } = doc.data();
             let todo = new Todo();
-            todo.setValues(id, text, isComplete, created.toDate(), priority);
+            let createdDate = created ? created.toDate() : created;
+            todo.setValues(id, text, isComplete, createdDate, priority);
             todos.push(todo);
         });
         dispatch(todosFetched(todos));
