@@ -1,4 +1,4 @@
-import {  fetchingTodos, todosFetched, todoCreated, todoRemoved, todoMarked, showToast} from './actions'
+import {  fetchingTodos, todosFetched, todoCreated, todoRemoved, todoUpdated, showToast} from './actions'
 import { db } from '../common/firebase'; 
 import { Todo } from '../common/Todo';
 import { getUserTodosPath } from '../common/util';
@@ -44,15 +44,15 @@ const removeTodo =  (id) => async (dispatch, getState) => {
     });
 };
 
-const markTodo =  (id, isComplete) => async (dispatch, getState) => {
-    db.collection(getUserTodosPath(getState())).doc(id)
-    .set({isComplete}, {merge: true})
+const updateTodo =  (updateObject) => async (dispatch, getState) => {
+    db.collection(getUserTodosPath(getState())).doc(updateObject.id)
+    .set(updateObject, {merge: true})
     .then(() => {
-        dispatch(todoMarked(id, isComplete));
+        dispatch(todoUpdated(updateObject));
     }).catch((error) => {
         console.error("Error marking the todo: ", error);
         dispatch(showToast("Error completing todo", "error"));
     });
  };
 
-export { loadTodos, createTodo, removeTodo, markTodo };
+export { loadTodos, createTodo, removeTodo, updateTodo };

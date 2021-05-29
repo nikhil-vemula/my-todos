@@ -4,7 +4,7 @@ import {
   SHOW_TOAST,
   TODOS_FETCHED,
   TODO_CREATED,
-  TODO_MARKED,
+  TODO_UPDATED,
   TODO_REMOVED,
   UPDATE_USER_STATE,
   USER_STATE_FETCHED
@@ -33,11 +33,17 @@ export const todosData = (state = initialTodoState, action) => {
       ...state,
       todos,
     };
-  } else if (type === TODO_MARKED) {
-    const { id, isComplete } = payload;
+  } else if (type === TODO_UPDATED) {
+    const updateObject = payload.updateObject;
+    const id = updateObject.id;
     let todos = [...state.todos];
     for (let i = 0; i < todos.length; i++) {
-      if (todos[i].id === id) todos[i].isComplete = isComplete;
+      if (todos[i].id === id) {
+        var keys = Object.keys(updateObject);
+        for (let j = 0; j < keys.length; j++) {
+          todos[i][keys[j]] = updateObject[keys[j]];
+        }
+      }
     }
     return {
       ...state,
