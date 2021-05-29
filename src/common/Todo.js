@@ -4,13 +4,15 @@ class Todo {
         this.text = "";
         this.isComplete = false;
         this.created = new Date();
+        this.priority = 3;
     }
 
-    setValues(id, text, isComplete, created) {
+    setValues(id, text, isComplete, created, priority) {
         this.id = id;
         this.text = text;
         this.isComplete = isComplete;
         this.created = new Date(created);
+        this.priority = priority;
     }
 
     markComplete() {
@@ -22,7 +24,8 @@ class Todo {
             "id": this.id,
             "text": this.text,
             "isComplete": this.isComplete,
-            "created": this.created
+            "created": this.created,
+            "priority": this.priority
         }
     }
 }
